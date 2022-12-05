@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  server:
+    entrypoint: [ "sh", "-c", "java -cp app:app/lib/* br.com.gd.pagarme.PagarMeApiApplication" ]
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo-pagar-me-api:27017/pagarmeApi?retryWrites=true&w=majority
+
+  db:
+    image: 'mongo'
+    container_name: mongo-pagar-me-api
+    ports:
+      - '27017:27017'
+    volumes:
+      - /home/barry/mongodb/database:/data/db
