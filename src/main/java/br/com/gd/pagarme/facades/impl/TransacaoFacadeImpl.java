@@ -40,7 +40,7 @@ public class TransacaoFacadeImpl implements TransacaoFacade {
     @Override
     public List<TransacaoResponseDTO> listar() {
         List<TransacaoResponseDTO> transacaoResponseDTOList = new ArrayList<>();
-        for (TransacaoEntity transacaoEntity : transacaoService.listar()){
+        for (TransacaoEntity transacaoEntity : transacaoService.listar()) {
             transacaoResponseDTOList.add(converterTransacaoEntityParaTransacaoResponseDTO(transacaoEntity));
         }
         return transacaoResponseDTOList;
@@ -51,36 +51,32 @@ public class TransacaoFacadeImpl implements TransacaoFacade {
         transacaoService.deletar();
     }
 
-    private TransacaoResponseDTO converterTransacaoEntityParaTransacaoResponseDTO (TransacaoEntity transacaoEntity){
+    private TransacaoResponseDTO converterTransacaoEntityParaTransacaoResponseDTO(TransacaoEntity transacaoEntity) {
         TransacaoResponseDTO transacaoResponseDTO = modelMapper.map(transacaoEntity, TransacaoResponseDTO.class);
         PagamentoResponseDTO pagamentoResponseDTO = new PagamentoResponseDTO();
         pagamentoResponseDTO.setDataPagamento(transacaoEntity.getPagamento().getDataPagamento());
         pagamentoResponseDTO.setStatus(transacaoEntity.getPagamento().getStatus());
         transacaoResponseDTO.setPagamento(pagamentoResponseDTO);
-        String ultimosDigitoCartao = transacaoResponseDTO.getNumeroCartao().substring(transacaoResponseDTO.getNumeroCartao().length()-4);
+        String ultimosDigitoCartao = transacaoResponseDTO.getNumeroCartao().substring(transacaoResponseDTO.getNumeroCartao().length() - 4);
         transacaoResponseDTO.setNumeroCartao(NUM_CARTAO_CRIP + ultimosDigitoCartao);
         return transacaoResponseDTO;
     }
 
-    private TransacaoEntity converterTransacaoRequestDTOParaTransacaoEntity (TransacaoRequestDTO transacaoRequestDTO){
+    private TransacaoEntity converterTransacaoRequestDTOParaTransacaoEntity(TransacaoRequestDTO transacaoRequestDTO) {
         TransacaoEntity transacaoEntity = modelMapper.map(transacaoRequestDTO, TransacaoEntity.class);
         transacaoEntity.setPagamento(criarPagamento(transacaoRequestDTO));
         return transacaoEntity;
     }
 
-    private PagamentoEntity criarPagamento (TransacaoRequestDTO transacaoRequestDTO){
+    private PagamentoEntity criarPagamento(TransacaoRequestDTO transacaoRequestDTO) {
         PagamentoEntity pagamentoEntity = new PagamentoEntity();
-            if(transacaoRequestDTO.getMetodoPagamento() == MetodoPagamentoEnum.DEBIT_CARD){
-                pagamentoEntity.setStatus(PagamentoEnum.PAID);
-                pagamentoEntity.setDataPagamento(LocalDateTime.now());
-            } else {
-                pagamentoEntity.setStatus(PagamentoEnum.WAITING_FUNDS);
-                pagamentoEntity.setDataPagamento(LocalDateTime.now().plusDays(30));
-            }
+        if (transacaoRequestDTO.getMetodoPagamento() == MetodoPagamentoEnum.DEBIT_CARD) {
+            pagamentoEntity.setStatus(PagamentoEnum.PAID);
+            pagamentoEntity.setDataPagamento(LocalDateTime.now());
+        } else {
+            pagamentoEntity.setStatus(PagamentoEnum.WAITING_FUNDS);
+            pagamentoEntity.setDataPagamento(LocalDateTime.now().plusDays(30));
+        }
         return pagamentoService.salvar(pagamentoEntity);
-    }
-
-    private PagamentoResponseDTO converterPagamentoEntityParaPagamentoResponseDTO (PagamentoEntity pagamentoEntity){
-        return modelMapper.map(pagamentoEntity, PagamentoResponseDTO.class);
     }
 }
