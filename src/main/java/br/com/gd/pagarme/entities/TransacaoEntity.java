@@ -23,6 +23,6 @@ public class TransacaoEntity {
     private String nomePortadorCartao;
     private String dataValidadeCartao;
     private String cvv;
-    private PayableEntity payable;
+    private PagamentoEntity pagamento;
 
 }
