@@ -1,0 +1,19 @@
+spring:
+  data:
+    mongodb:
+      uri: ${SPRING_DATA_MONGODB_URI}
+      
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      base-path:
+      path-mapping:
+        health: /healthcheck
