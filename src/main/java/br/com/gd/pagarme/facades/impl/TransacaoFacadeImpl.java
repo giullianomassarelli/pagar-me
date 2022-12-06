@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Slf4j
 public class TransacaoFacadeImpl implements TransacaoFacade {
     @Autowired
     private TransacaoService transacaoService;
@@ -50,11 +51,11 @@ public class TransacaoFacadeImpl implements TransacaoFacade {
         BigDecimal saldoDisponivel = BigDecimal.ZERO;
         BigDecimal saldoALiberar = BigDecimal.ZERO;
         for (TransacaoEntity transacaoEntity : transacaoService.listar()){
-            if (transacaoEntity.getMetodoPagamento() == MetodoPagamentoEnum.DEBIT_CARD){
-                BigDecimal valorTransacao = transacaoEntity.getValorTransacao();
+            log.info("Consultando saldo disponivel");
+            BigDecimal valorTransacao = transacaoEntity.getValorTransacao();
+            if (transacaoEntity.getPagamento().getStatus() == PagamentoEnum.PAID){
                 saldoDisponivel = valorTransacao.add(saldoDisponivel);
             } else {
-                BigDecimal valorTransacao = transacaoEntity.getValorTransacao();
                 saldoALiberar = valorTransacao.add(saldoALiberar);
             }
         }
