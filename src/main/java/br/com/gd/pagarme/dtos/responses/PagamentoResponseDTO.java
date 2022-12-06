@@ -1,18 +1,15 @@
 package br.com.gd.pagarme.dtos.responses;
 
 import br.com.gd.pagarme.enums.MetodoPagamentoEnum;
+import br.com.gd.pagarme.enums.PagamentoEnum;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 public class PagamentoResponseDTO {
 
-   private String descricao;
-   private BigDecimal valorTransacao;
-   private MetodoPagamentoEnum metodoPagamento;
-   private String numeroCartao;
-   private String nomePortadorCartao;
-   private String dataValidadeCartao;
-   private String cvv;
+   private PagamentoEnum status;
+   private LocalDateTime dataPagamento;
 }

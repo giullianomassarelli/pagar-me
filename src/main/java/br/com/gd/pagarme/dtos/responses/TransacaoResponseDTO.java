@@ -16,4 +16,5 @@ public class TransacaoResponseDTO {
    private String nomePortadorCartao;
    private String dataValidadeCartao;
    private String cvv;
+   private PagamentoResponseDTO pagamento;
 }
