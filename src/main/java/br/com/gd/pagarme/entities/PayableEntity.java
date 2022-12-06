@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -18,6 +19,6 @@ public class PayableEntity {
     @Id
     private String id;
     private PayableEnum status;
-    private Date dataPagamento;
+    private LocalDateTime dataPagamento;
 
 }

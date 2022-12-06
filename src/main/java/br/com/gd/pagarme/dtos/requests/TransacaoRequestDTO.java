@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 
 @Data
 public class TransacaoRequestDTO {
+    private String descricao;
     private BigDecimal valorTransacao;
     private MetodoPagamentoEnum metodoPagamento;
     private String numeroCartao;
