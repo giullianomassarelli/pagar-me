@@ -33,6 +33,8 @@ public class TransacaoFacadeImpl implements TransacaoFacade {
     private ModelMapper modelMapper;
     private final String NUM_CARTAO_CRIP = "XXXX-XXXX-XXXX-";
 
+    private final BigDecimal TAXA_DEBITO = new BigDecimal("0.03");
+    private final BigDecimal TAXA_CREDITO = new BigDecimal("0.05");
     @Override
     public TransacaoResponseDTO salvar(TransacaoRequestDTO transacaoRequestDTO) {
         return converterTransacaoEntityParaTransacaoResponseDTO(
@@ -48,15 +50,24 @@ public class TransacaoFacadeImpl implements TransacaoFacade {
     }
     @Override
     public SaldoResponseDTO consultarSaldo() {
+
         BigDecimal saldoDisponivel = BigDecimal.ZERO;
         BigDecimal saldoALiberar = BigDecimal.ZERO;
+        BigDecimal taxa;
+        BigDecimal saldoAtualizado;
+
         for (TransacaoEntity transacaoEntity : transacaoService.listar()){
             log.info("Consultando saldo disponivel");
             BigDecimal valorTransacao = transacaoEntity.getValorTransacao();
+
             if (transacaoEntity.getPagamento().getStatus() == PagamentoEnum.PAID){
-                saldoDisponivel = valorTransacao.add(saldoDisponivel);
+                taxa = valorTransacao.multiply(TAXA_DEBITO);
+                saldoAtualizado = valorTransacao.subtract(taxa);
+                saldoDisponivel = saldoDisponivel.add(saldoAtualizado);
             } else {
-                saldoALiberar = valorTransacao.add(saldoALiberar);
+                taxa = valorTransacao.multiply(TAXA_CREDITO);
+                saldoAtualizado = valorTransacao.subtract(taxa);
+                saldoALiberar = saldoALiberar.add(saldoAtualizado);
             }
         }
         SaldoResponseDTO saldoResponseDTO = new SaldoResponseDTO();
