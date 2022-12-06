@@ -17,11 +17,13 @@ public class TransacaoEntity {
 
     @Id
     private String id;
+    private String descricao;
     private BigDecimal valorTransacao;
     private MetodoPagamentoEnum metodoPagamento;
     private String numeroCartao;
     private String nomePortadorCartao;
     private String dataValidadeCartao;
     private String cvv;
+    private PagamentoEntity pagamento;
 
 }
