@@ -29,7 +29,7 @@ public class TransacaoFacadeImpl implements TransacaoFacade {
     @Autowired
     private ModelMapper modelMapper;
 
-
+    private final String NUM_CARTAO_CRIP = "XXXX-XXXX-XXXX-";
 
     @Override
     public TransacaoResponseDTO salvar(TransacaoRequestDTO transacaoRequestDTO) {
@@ -57,6 +57,8 @@ public class TransacaoFacadeImpl implements TransacaoFacade {
         pagamentoResponseDTO.setDataPagamento(transacaoEntity.getPagamento().getDataPagamento());
         pagamentoResponseDTO.setStatus(transacaoEntity.getPagamento().getStatus());
         transacaoResponseDTO.setPagamento(pagamentoResponseDTO);
+        String ultimosDigitoCartao = transacaoResponseDTO.getNumeroCartao().substring(transacaoResponseDTO.getNumeroCartao().length()-4);
+        transacaoResponseDTO.setNumeroCartao(NUM_CARTAO_CRIP + ultimosDigitoCartao);
         return transacaoResponseDTO;
     }
 
