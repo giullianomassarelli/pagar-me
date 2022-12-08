@@ -34,15 +34,9 @@ public class TransacaoFacadeImpl implements TransacaoFacade {
     public TransacaoResponseDTO salvar(TransacaoRequestDTO transacaoRequestDTO) {
 
         transacaoRequestDTO.setNumeroCartao(NUM_CARTAO_CRIP + retornaQuatroUltimosCaracterDeUmaString(transacaoRequestDTO.getNumeroCartao()));
-
-        PagamentoResponseDTO pagamentoResponseDTO = pagamentoFacade.criarPagamento(transacaoRequestDTO.getMetodoPagamento());
-
-        transacaoRequestDTO.setPagamento(pagamentoResponseDTO);
-
-        TransacaoResponseDTO transacaoResponseDTO = converterTransacaoEntityParaTransacaoResponseDTO(transacaoService.salvar(converterTransacaoRequestDTOParaTransacaoEntity(transacaoRequestDTO)));
-        transacaoResponseDTO.setPagamento(pagamentoResponseDTO);
-
-        return transacaoResponseDTO;
+        transacaoRequestDTO.setPagamento(pagamentoFacade.criarPagamento(transacaoRequestDTO.getMetodoPagamento()));
+        return converterTransacaoEntityParaTransacaoResponseDTO(
+                transacaoService.salvar(converterTransacaoRequestDTOParaTransacaoEntity(transacaoRequestDTO)));
     }
     @Override
     public List<TransacaoResponseDTO> listar() {
@@ -83,10 +77,12 @@ public class TransacaoFacadeImpl implements TransacaoFacade {
 
         return saldoResponseDTO;
     }
+
     @Override
     public void deletar() {
         transacaoService.deletar();
     }
+
     private String retornaQuatroUltimosCaracterDeUmaString (String string){
         return string.substring(string.length() -4);
     }
