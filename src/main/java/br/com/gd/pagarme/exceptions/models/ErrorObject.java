@@ -1,4 +1,4 @@
-package br.com.gdhub.monitorapi.exceptions.models;
+package br.com.gd.pagarme.exceptions.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
