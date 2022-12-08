@@ -20,4 +20,8 @@ public class PagamentoEntity {
     private PagamentoEnum status;
     private LocalDateTime dataPagamento;
 
+
+    public PagamentoEntity(LocalDateTime dataPagamento) {
+        this.dataPagamento = dataPagamento;
+    }
 }
