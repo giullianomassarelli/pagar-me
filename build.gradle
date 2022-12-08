@@ -29,6 +29,8 @@ dependencies {
 	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
 
 	implementation 'org.modelmapper:modelmapper:2.3.8'
+
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.6.4'
 }
 
 tasks.named('test') {
