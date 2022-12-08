@@ -1,4 +1,4 @@
-package br.com.gd.pagarme.facades;
+package br.com.gd.pagarme.facades.impl;
 
 import br.com.gd.pagarme.dtos.requests.TransacaoRequestDTO;
 import br.com.gd.pagarme.dtos.responses.SaldoResponseDTO;

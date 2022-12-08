@@ -1,4 +1,4 @@
-package br.com.gd.pagarme.services;
+package br.com.gd.pagarme.services.impl;
 
 import br.com.gd.pagarme.entities.PagamentoEntity;
 
