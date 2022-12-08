@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -17,7 +19,7 @@ public class TransacaoController {
     @Autowired
     private TransacaoFacade transacaoFacade;
     @PostMapping
-    public ResponseEntity<TransacaoResponseDTO> salvar (@RequestBody TransacaoRequestDTO transacaoRequestDTO){
+    public ResponseEntity<TransacaoResponseDTO> salvar (@RequestBody @Valid TransacaoRequestDTO transacaoRequestDTO){
         return new ResponseEntity<>(transacaoFacade.salvar(transacaoRequestDTO), HttpStatus.CREATED);
     }
     @GetMapping

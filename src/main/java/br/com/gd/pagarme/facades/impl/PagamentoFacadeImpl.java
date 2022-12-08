@@ -1,6 +1,5 @@
 package br.com.gd.pagarme.facades.impl;
 
-import br.com.gd.pagarme.dtos.requests.TransacaoRequestDTO;
 import br.com.gd.pagarme.dtos.responses.PagamentoResponseDTO;
 import br.com.gd.pagarme.entities.PagamentoEntity;
 import br.com.gd.pagarme.enums.MetodoPagamentoEnum;
