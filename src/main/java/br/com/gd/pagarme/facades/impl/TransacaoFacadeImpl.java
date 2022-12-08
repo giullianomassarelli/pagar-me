@@ -1,13 +1,13 @@
-package br.com.gd.pagarme.facades.impl.impl;
+package br.com.gd.pagarme.facades.impl;
 
 import br.com.gd.pagarme.dtos.requests.TransacaoRequestDTO;
 import br.com.gd.pagarme.dtos.responses.SaldoResponseDTO;
 import br.com.gd.pagarme.dtos.responses.TransacaoResponseDTO;
 import br.com.gd.pagarme.entities.TransacaoEntity;
 import br.com.gd.pagarme.enums.PagamentoEnum;
-import br.com.gd.pagarme.facades.impl.PagamentoFacade;
-import br.com.gd.pagarme.facades.impl.TransacaoFacade;
-import br.com.gd.pagarme.services.impl.TransacaoService;
+import br.com.gd.pagarme.facades.PagamentoFacade;
+import br.com.gd.pagarme.facades.TransacaoFacade;
+import br.com.gd.pagarme.services.TransacaoService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

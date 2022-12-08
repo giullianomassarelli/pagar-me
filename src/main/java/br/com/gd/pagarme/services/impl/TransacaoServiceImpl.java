@@ -1,8 +1,8 @@
-package br.com.gd.pagarme.services.impl.impl;
+package br.com.gd.pagarme.services.impl;
 
 import br.com.gd.pagarme.entities.TransacaoEntity;
 import br.com.gd.pagarme.repositories.TransacaoRepository;
-import br.com.gd.pagarme.services.impl.TransacaoService;
+import br.com.gd.pagarme.services.TransacaoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

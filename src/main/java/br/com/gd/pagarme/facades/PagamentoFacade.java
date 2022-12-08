@@ -1,4 +1,4 @@
-package br.com.gd.pagarme.facades.impl;
+package br.com.gd.pagarme.facades;
 
 import br.com.gd.pagarme.dtos.responses.PagamentoResponseDTO;
 import br.com.gd.pagarme.enums.MetodoPagamentoEnum;
