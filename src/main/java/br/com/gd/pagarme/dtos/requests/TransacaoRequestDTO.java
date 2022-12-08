@@ -1,5 +1,6 @@
 package br.com.gd.pagarme.dtos.requests;
 
+import br.com.gd.pagarme.dtos.responses.PagamentoResponseDTO;
 import br.com.gd.pagarme.enums.MetodoPagamentoEnum;
 import lombok.Data;
 
@@ -14,4 +15,5 @@ public class TransacaoRequestDTO {
     private String nomePortadorCartao;
     private String dataValidadeCartao;
     private String cvv;
+    private PagamentoResponseDTO pagamento;
 }
