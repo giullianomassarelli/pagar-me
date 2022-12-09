@@ -2,6 +2,8 @@ package br.com.gd.pagarme.dtos.requests;
 
 import br.com.gd.pagarme.dtos.responses.PagamentoResponseDTO;
 import br.com.gd.pagarme.enums.MetodoPagamentoEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,5 +39,6 @@ public class TransacaoRequestDTO {
     @Size(min = 3, max = 3, message = "Verifique o código de segurança do cartão")
     private String cvv;
 
+    @JsonIgnore
     private PagamentoResponseDTO pagamento;
 }
