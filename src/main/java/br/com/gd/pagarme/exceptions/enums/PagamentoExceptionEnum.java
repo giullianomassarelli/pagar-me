@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public enum PagamentoEnum {
+public enum PagamentoExceptionEnum {
 
    PAGAMENTO_INVALIDO("PG_PGM_001", "Tipo de pagamento invalido", 400);
 

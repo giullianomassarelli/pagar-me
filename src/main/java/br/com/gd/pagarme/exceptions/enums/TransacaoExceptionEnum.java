@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public enum TransacaoEnum {
+public enum TransacaoExceptionEnum {
 
     PORTADOR_CARTAO_INVALIDO("PG_TRS_001", "Nome do portão do cartão invalido", 400);
 
