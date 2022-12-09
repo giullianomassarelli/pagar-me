@@ -4,6 +4,7 @@ import br.com.gd.pagarme.dtos.requests.TransacaoRequestDTO;
 import br.com.gd.pagarme.dtos.responses.SaldoResponseDTO;
 import br.com.gd.pagarme.dtos.responses.TransacaoResponseDTO;
 import br.com.gd.pagarme.entities.TransacaoEntity;
+import br.com.gd.pagarme.enums.MetodoPagamentoEnum;
 import br.com.gd.pagarme.enums.PagamentoEnum;
 import br.com.gd.pagarme.facades.PagamentoFacade;
 import br.com.gd.pagarme.facades.TransacaoFacade;
@@ -32,8 +33,10 @@ public class TransacaoFacadeImpl implements TransacaoFacade {
     @Override
     public TransacaoResponseDTO salvar(TransacaoRequestDTO transacaoRequestDTO) {
 
-        transacaoRequestDTO.setNumeroCartao(NUM_CARTAO_CRIP + retornaQuatroUltimosCaracterDeUmaString(transacaoRequestDTO.getNumeroCartao()));
+        transacaoRequestDTO.setNumeroCartao(esconderNumerosDoCartao(transacaoRequestDTO.getNumeroCartao()));
+
         transacaoRequestDTO.setPagamento(pagamentoFacade.criarPagamento(transacaoRequestDTO.getMetodoPagamento()));
+
         return converterTransacaoEntityParaTransacaoResponseDTO(
                 transacaoService.salvar(converterTransacaoRequestDTOParaTransacaoEntity(transacaoRequestDTO)));
     }
@@ -82,8 +85,8 @@ public class TransacaoFacadeImpl implements TransacaoFacade {
         transacaoService.deletar();
     }
 
-    private String retornaQuatroUltimosCaracterDeUmaString (String string){
-        return string.substring(string.length() -4);
+    private String esconderNumerosDoCartao (String string){
+        return NUM_CARTAO_CRIP + string.substring(string.length() -4);
     }
 
     private TransacaoResponseDTO converterTransacaoEntityParaTransacaoResponseDTO(TransacaoEntity transacaoEntity) {
