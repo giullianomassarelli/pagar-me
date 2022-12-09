@@ -59,6 +59,7 @@ public class TransacaoControllerTest {
     private final String NOME_PORTADOR_CARTAO = "GIULLIANO";
     private final String DATA_VALIDADE_CARTAO = "10/22";
     private final String CVV_CARTAO = "123";
+    private final String CVV_CARTAO_INCORRETO = "1234";
 
     //CONSTANTES USADAS NO MOCK DE PAGAMENTOS
     private final String ID_PAGAMENTO = "TEST_ID_PG";
@@ -96,8 +97,16 @@ public class TransacaoControllerTest {
     public void chamarCadastrarTransacaoPassandoNumCartaoInvalidoDeveRetornarBadRequest () throws Exception {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         mockMvc.perform(post(ROTA_TRANSACAO).contentType(MediaType.APPLICATION_JSON)
-                        .content(ow.writeValueAsString(retornaBadRequestTransacaoRequestDTO())))
+                        .content(ow.writeValueAsString(retornaNumeroCartaoIncorretoNaTransacaoRequestDTO())))
                         .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void chamarCadastrarTransacaoPassandoNumeroCvvInvalidoDeveRetornarBadRequest () throws Exception {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        mockMvc.perform(post(ROTA_TRANSACAO).contentType(MediaType.APPLICATION_JSON)
+                        .content(ow.writeValueAsString(retornaNumeroCvvIncorretoNaTransacaoRequestDTO())))
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -180,7 +189,7 @@ public class TransacaoControllerTest {
                 null);
     }
 
-    private TransacaoRequestDTO retornaBadRequestTransacaoRequestDTO () {
+    private TransacaoRequestDTO retornaNumeroCartaoIncorretoNaTransacaoRequestDTO () {
         return new TransacaoRequestDTO(
                 DESCRICAO,
                 VALOR_TRANSACAO,
@@ -189,6 +198,18 @@ public class TransacaoControllerTest {
                 NOME_PORTADOR_CARTAO,
                 DATA_VALIDADE_CARTAO,
                 CVV_CARTAO,
+                retornaPagamentoResponseDTO());
+    }
+
+    private TransacaoRequestDTO retornaNumeroCvvIncorretoNaTransacaoRequestDTO () {
+        return new TransacaoRequestDTO(
+                DESCRICAO,
+                VALOR_TRANSACAO,
+                METODO_PAGAMENTO_DEBITO,
+                NUMERO_CARTAO_CORRETO,
+                NOME_PORTADOR_CARTAO,
+                DATA_VALIDADE_CARTAO,
+                CVV_CARTAO_INCORRETO,
                 retornaPagamentoResponseDTO());
     }
 
