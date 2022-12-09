@@ -16,7 +16,7 @@ public class PagamentoServiceImpl implements PagamentoService {
 
     @Override
     public PagamentoEntity salvar(PagamentoEntity pagamentoEntity) {
-        log.info("Salvando um novo pagamento");
+        log.info("Salvando um novo pagamento : {}", pagamentoEntity);
         return pagamentoRepository.save(pagamentoEntity);
     }
 

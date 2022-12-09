@@ -17,7 +17,7 @@ public class TransacaoServiceImpl implements TransacaoService {
 
     @Override
     public TransacaoEntity salvar(TransacaoEntity transacaoEntity) {
-        log.info("Salvando uma nova transação");
+        log.info("Salvando uma nova transação : {}", transacaoEntity);
         return transacaoRepository.save(transacaoEntity);
     }
 
