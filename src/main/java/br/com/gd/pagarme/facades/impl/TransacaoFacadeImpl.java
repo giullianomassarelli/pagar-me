@@ -27,7 +27,6 @@ public class TransacaoFacadeImpl implements TransacaoFacade {
     private PagamentoFacade pagamentoFacade;
     @Autowired
     private ModelMapper modelMapper;
-    private final String NUM_CARTAO_CRIP = "XXXX-XXXX-XXXX-";
     private final BigDecimal TAXA_DEBITO = new BigDecimal("0.03");
     private final BigDecimal TAXA_CREDITO = new BigDecimal("0.05");
     @Override
@@ -86,6 +85,7 @@ public class TransacaoFacadeImpl implements TransacaoFacade {
     }
 
     private String esconderNumerosDoCartao (String string){
+        String NUM_CARTAO_CRIP = "XXXX-XXXX-XXXX-";
         return NUM_CARTAO_CRIP + string.substring(string.length() -4);
     }
 
