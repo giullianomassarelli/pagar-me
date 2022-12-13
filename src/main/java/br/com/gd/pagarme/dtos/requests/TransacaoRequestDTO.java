@@ -39,6 +39,4 @@ public class TransacaoRequestDTO {
     @Size(min = 3, max = 3, message = "Verifique o código de segurança do cartão")
     private String cvv;
 
-    @JsonIgnore
-    private PagamentoResponseDTO pagamento;
 }
