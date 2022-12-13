@@ -26,4 +26,16 @@ public class TransacaoEntity {
     private String cvv;
     private PagamentoEntity pagamento;
 
+
+    @Override
+    public String toString() {
+        return "TransacaoEntity{" +
+                "id='" + id + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", valorTransacao=" + valorTransacao +
+                ", metodoPagamento=" + metodoPagamento +
+                ", nomePortadorCartao='" + nomePortadorCartao + '\'' +
+                ", pagamento=" + pagamento +
+                '}';
+    }
 }

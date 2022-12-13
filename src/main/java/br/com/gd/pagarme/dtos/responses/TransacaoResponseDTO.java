@@ -37,4 +37,15 @@ public class TransacaoResponseDTO {
 
    @JsonProperty("Informações do pagamento")
    private PagamentoResponseDTO pagamento;
+
+   @Override
+   public String toString() {
+      return "TransacaoResponseDTO{" +
+              "descricao='" + descricao + '\'' +
+              ", valorTransacao=" + valorTransacao +
+              ", metodoPagamento=" + metodoPagamento +
+              ", nomePortadorCartao='" + nomePortadorCartao + '\'' +
+              ", pagamento=" + pagamento +
+              '}';
+   }
 }
