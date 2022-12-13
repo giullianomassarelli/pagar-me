@@ -167,8 +167,7 @@ public class TransacaoControllerTest {
                 NUMERO_CARTAO_CORRETO,
                 NOME_PORTADOR_CARTAO,
                 DATA_VALIDADE_CARTAO,
-                CVV_CARTAO,
-                retornaPagamentoResponseDTO());
+                CVV_CARTAO);
     }
 
     private TransacaoResponseDTO retornaTransacaoResponseDTO (){
@@ -197,8 +196,7 @@ public class TransacaoControllerTest {
                 NUMERO_CARTAO_INCORRETO,
                 NOME_PORTADOR_CARTAO,
                 DATA_VALIDADE_CARTAO,
-                CVV_CARTAO,
-                retornaPagamentoResponseDTO());
+                CVV_CARTAO);
     }
 
     private TransacaoRequestDTO retornaNumeroCvvIncorretoNaTransacaoRequestDTO () {
@@ -209,8 +207,7 @@ public class TransacaoControllerTest {
                 NUMERO_CARTAO_CORRETO,
                 NOME_PORTADOR_CARTAO,
                 DATA_VALIDADE_CARTAO,
-                CVV_CARTAO_INCORRETO,
-                retornaPagamentoResponseDTO());
+                CVV_CARTAO_INCORRETO);
     }
 
     private List<TransacaoResponseDTO> retornaListaDeTransacaoResponseDTO (){
