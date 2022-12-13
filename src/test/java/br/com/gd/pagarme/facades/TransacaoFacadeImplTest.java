@@ -9,6 +9,7 @@ import br.com.gd.pagarme.entities.TransacaoEntity;
 import br.com.gd.pagarme.enums.MetodoPagamentoEnum;
 import br.com.gd.pagarme.enums.PagamentoEnum;
 import br.com.gd.pagarme.facades.impl.TransacaoFacadeImpl;
+import br.com.gd.pagarme.mappers.TransacaoMapper;
 import br.com.gd.pagarme.services.TransacaoService;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +20,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.modelmapper.ModelMapper;
+import org.powermock.core.classloader.annotations.MockPolicy;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -41,10 +43,7 @@ public class TransacaoFacadeImplTest {
     private TransacaoService transacaoService;
 
     @Mock
-    private PagamentoFacade pagamentoFacade;
-
-    @Mock
-    private ModelMapper modelMapper;
+    private TransacaoMapper transacaoMapper;
 
     private final String ID_TRANSACAO = "TESTE_ID_TRS";
     private final String DESCRICAO = "Descrição teste";
@@ -73,13 +72,9 @@ public class TransacaoFacadeImplTest {
         MockitoAnnotations.openMocks(this);
         when(transacaoService.salvar(retornaTransacaoEntity())).thenReturn(retornaTransacaoEntity());
         when(transacaoService.listar()).thenReturn(retornaListaTransacaoEntity());
+        when(transacaoMapper.converterTransacaoEntityParaTransacaoResponseDTO(retornaTransacaoEntity())).thenReturn(retornaTransacaoResponseDTO());
 
 
-        //convert entity to DTO:
-        when(modelMapper.map(retornaTransacaoEntity(), TransacaoResponseDTO.class)).thenReturn(retornaTransacaoResponseDTO());
-        //when(modelMapper.map(retornaPagamentoEntity(), PagamentoResponseDTO.class)).thenReturn(retornaPagamentoResponseDTO());
-        //convert DTO to entity:
-        when(modelMapper.map(retornaTransacaoRequestDTO(), TransacaoEntity.class)).thenReturn(retornaTransacaoEntity());
     }
 
     @Test
@@ -140,8 +135,7 @@ public class TransacaoFacadeImplTest {
                 NUMERO_CARTAO_CORRETO,
                 NOME_PORTADOR_CARTAO,
                 DATA_VALIDADE_CARTAO,
-                CVV_CARTAO,
-                retornaPagamentoResponseDTO());
+                CVV_CARTAO);
     }
 
     private List<TransacaoEntity> retornaListaTransacaoEntity (){
