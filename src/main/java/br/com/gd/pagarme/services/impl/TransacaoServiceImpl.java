@@ -17,19 +17,19 @@ public class TransacaoServiceImpl implements TransacaoService {
 
     @Override
     public TransacaoEntity salvar(TransacaoEntity transacaoEntity) {
-        log.info("Salvando uma nova transação : {}", transacaoEntity);
+        log.info("salvando uma nova transacao : {}", transacaoEntity);
         return transacaoRepository.save(transacaoEntity);
     }
 
     @Override
     public List<TransacaoEntity> listar() {
-        log.info("Listando todas as transações");
+        log.info("listando todas as transacoes");
         return transacaoRepository.findAll();
     }
 
     @Override
     public void deletar() {
-        log.warn("Deletando todos as transações do banco de dados");
+        log.warn("deletando todos as transacoes do banco de dados");
         transacaoRepository.deleteAll();
     }
 }

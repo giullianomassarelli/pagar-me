@@ -16,13 +16,13 @@ public class PagamentoServiceImpl implements PagamentoService {
 
     @Override
     public PagamentoEntity salvar(PagamentoEntity pagamentoEntity) {
-        log.info("Salvando um novo pagamento : {}", pagamentoEntity);
+        log.info("salvando um novo pagamento : {}", pagamentoEntity);
         return pagamentoRepository.save(pagamentoEntity);
     }
 
     @Override
     public void deletar() {
-        log.warn("Deletando todos os pagamentos do banco de dados");
+        log.warn("deletando todos os pagamentos do banco de dados");
         pagamentoRepository.deleteAll();
     }
 }
